@@ -1,14 +1,14 @@
 """Simulación de 12 operaciones (válidas e inválidas) de Software FJ."""
-from software_fj.gestor import GestorFJ
-from software_fj.logger import log
-from software_fj.servicios import AlquilerEquipo, AsesoriaEspecializada, ReservaSala
+from gestor import GestorFJ
+from logger import log
+from servicios import AlquilerEquipo, AsesoriaEspecializada, ReservaSala
 
 
 def main():
     g = GestorFJ()
-    log.info("===== INICIO DE LA SIMULACIÓN =====")
+    log.info("===== INICIO DE PRUBAS DEL SISTEMA  =====")
 
-    # 1-3: clientes (válido, email inválido, parámetro faltante)
+    # Casos de clientes: (válido, email inválido, parámetro faltante)
     ana = g.registrar_cliente(nombre="Ana Pérez", documento="1020304050",
                               email="ana@correo.com", telefono="3101234567")
     g.registrar_cliente(nombre="Luis Gómez", documento="12345678",
@@ -18,7 +18,7 @@ def main():
     carlos = g.registrar_cliente(nombre="Carlos Díaz", documento="987654321",
                                  email="carlos@correo.com", telefono="3205556677")
 
-    # 4-6: servicios (2 válidos, 1 inválido, 1 más válido)
+    #Servicios (2 válidos, 1 inválido, 1 más válido)
     sala = g.agregar_servicio(ReservaSala, "Sala Innovación", 50000, 10, True)
     g.agregar_servicio(AlquilerEquipo, "Portátil", -100, 2)  # tarifa inválida
     equipo = g.agregar_servicio(AlquilerEquipo, "Proyector", 15000, 2, True)
@@ -29,7 +29,7 @@ def main():
     for s in g.servicios:
         print(" ", s.describir())
 
-    # 7-12: reservas y operaciones
+    #Reservas y operaciones
     r1 = g.crear_reserva(ana, sala, 3)                  # válida
     g.crear_reserva(ana, sala, 20)                      # duración inválida
     g.crear_reserva("no-es-cliente", sala, 2)           # cliente inválido
@@ -55,7 +55,7 @@ def main():
     for r in g.reservas:
         print(" ", r.describir())
 
-    log.info("===== FIN DE LA SIMULACIÓN (el sistema continuó estable) =====")
+    log.info("===== FIN DE PRUBAS DE SISTEMA  (el sistema continuó estable) =====")
 
 
 if __name__ == "__main__":
