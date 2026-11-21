@@ -11,7 +11,7 @@ class GestorFJ:
         self.servicios: list = []
         self.reservas: list[Reserva] = []
 
-   def _ejecutar(self, descripcion, funcion, *args, **kwargs):
+    def _ejecutar(self, descripcion, funcion, *args, **kwargs):
         """Ejecuta una operación y registra si hay error sin detener el programa."""
         try:
             resultado = funcion(*args, **kwargs)
